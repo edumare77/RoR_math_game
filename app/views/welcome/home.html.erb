@@ -1,2 +1,14 @@
-<h1>Welcome#home</h1>
-<p>Find me in app/views/welcome/home.html.erb</p>
+<%= link_to "Sign up now!", '#' %>
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | RoR math game app</title>
+  </head>
+  <body>
+    <h1>RoR math game app</h1>
+    <p>
+      Let's play!
+    </p>
+  </body>
+</html>

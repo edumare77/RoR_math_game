@@ -1,2 +1,14 @@
-<h1>Welcome#about</h1>
-<p>Find me in app/views/welcome/about.html.erb</p>
+<% provide(:title, "About") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | RoR math game app</title>
+  </head>
+  <body>
+    <h1>About RoR math game app</h1>
+    <p>
+      Math game designed to provide a practical and fun way to allow year 3 kids to practice their 
+      mathematical skills.
+    </p>
+  </body>
+</html>
