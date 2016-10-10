@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#home'
-  get 'users/new'
+  
   get 'welcome/home'
-  get 'welcome/about'
-    resources :users
+  get '/about',   to: 'welcome#about'
+  get  '/signup',  to: 'users#new'
+  
+  resources :users
 end
