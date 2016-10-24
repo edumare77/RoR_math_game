@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ArithmeticsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get arithmetics_new_url
+    get game_path
     assert_response :success
   end
 

@@ -1,11 +1,10 @@
 class ArithmeticsController < ApplicationController
   
   def new
-    user_param = current_user
-    user=User.new(params[user_param])
+    user = User.find_by(user_name: current_user.user_name)
+    render 'new'
   end
   
- 
   
   def initialize
       @sub1 = rand(1...101) 
@@ -17,74 +16,9 @@ class ArithmeticsController < ApplicationController
         
     end
     
-    # accessor methods
-    def sub1
-          @sub1
-       end
+   
     
-    def sub2
-          @sub2
-    end
-  
-    def add1
-        @add1
-    end
-  
-    def add2
-        @add2
-    end
-  
-   def mult1
-        @mult1
-    end
-  
-    def mult2 
-        @mult2 
-    end
-    
-    # setter methods
-    def setSub1
-      @sub1 = rand(11)
-    end
-    
-    def setSub2
-      @sub2 = rand(sub1)+1 || rand(11)
-      
-    end
-    
-    def setAdd1
-      @add1 = rand(11)
-    end
-      
-    def setAdd2
-      @add2 = rand(11)
-      
-    end
-    
-    def setMult1
-      @mult1 = rand(13)
-      
-    end
-      
-    def setMult2
-      @mult2 = rand(13)
-    end
-    
-    
-    
-    def subtraction
-      @sub1 - @sub2
-    end
-    
-    def addition
-      @add1 + @add2
-    end
-    
-    def multiplication
-     @mult1 * @mult2
-    end
-    
-    def result
+    def create
       sub = params[:sub]
       #print "this is the user subtraction #{sub}" 
       add = params[:add]
@@ -95,10 +29,9 @@ class ArithmeticsController < ApplicationController
       add_res = params[:addition]
       mult_res = params[:multiplication]
       user_score= 0
-       
-      user_param = current_user
-      user=User.new(params[user_param])
-         
+      user = User.find_by(user_name: current_user.user_name)
+      
+      #print "this is the user  #{user.user_name}"   
       if sub == sub_res
         user_score += 1
       end 

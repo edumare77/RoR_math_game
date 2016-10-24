@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get    '/game',   to: 'arithmetics#new'
-  post   '/game',   to: 'arithmetics#result'
+  post   '/game',   to: 'arithmetics#create'
   resources :users
 end
