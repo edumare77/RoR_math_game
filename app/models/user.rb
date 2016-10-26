@@ -15,7 +15,11 @@ class User < ApplicationRecord
   validates_inclusion_of :categorie, :in => VALID_CAT                  
   validates :score, presence: true
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 },
+                       confirmation: true, on: :create
+  validates :password, allow_nil: true, confirmation: true,
+                       length: { minimum: 6 },
+                       on: :update
     
   # Returns the hash digest of the given string.
     def User.digest(string)

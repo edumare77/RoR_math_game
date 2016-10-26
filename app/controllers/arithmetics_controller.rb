@@ -1,5 +1,6 @@
 class ArithmeticsController < ApplicationController
-  
+
+    
   def new
     user = User.find_by(user_name: current_user.user_name)
     render 'new'
@@ -29,9 +30,8 @@ class ArithmeticsController < ApplicationController
       add_res = params[:addition]
       mult_res = params[:multiplication]
       user_score= 0
-      user = User.find_by(user_name: current_user.user_name)
-      
-      #print "this is the user  #{user.user_name}"   
+      user ||= current_user
+        
       if sub == sub_res
         user_score += 1
       end 
@@ -44,12 +44,13 @@ class ArithmeticsController < ApplicationController
         user_score += 1
       end 
       
+      user_score += user.score
+      
+      user.update_attribute(:score, user_score)
+      user.save!
+      if user.save
      
-print "this is the user score #{user_score}" 
-user.update_attribute(:score, user_score)
-
-if user.save
-  flash[:success] = "Well done, let's play again!"
+      flash[:success] = "Well done, let's play again!"
       redirect_to game_path
       else
           # print the errors to the development log
@@ -59,5 +60,6 @@ if user.save
 
       
     end
+    
 
 end
