@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007214803) do
+ActiveRecord::Schema.define(version: 20161030151530) do
+
+  create_table "arithmetics", force: :cascade do |t|
+    t.integer  "subtraction"
+    t.integer  "addition"
+    t.integer  "multiplication"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_arithmetics_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name",       null: false

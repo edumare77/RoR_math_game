@@ -5,17 +5,17 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-     <%= form_tag game_path do  %>
+     <%= form_tag arithmetics_path do  %>
 
-     <%= label_tag :sub %><br />
+     <%= label_tag :subtraction %><br />
      <%= @sub1 %>  -   <%= @sub2 %>  <%= number_field_tag :sub, class: 'form-control' %>
      <%= hidden_field_tag :subtraction, @sub1 - @sub2 %><br /><br />
       
-      <%= label_tag :add %><br />
+      <%= label_tag :addition %><br />
       <%= @add1 %>  +   <%= @add2 %>  <%= number_field_tag :add, class: 'form-control' %>
       <%= hidden_field_tag :addition, @add1 + @add2 %><br /><br />
       
-      <%= label_tag :mult %><br />
+      <%= label_tag :multiplication %><br />
       <%= @mult1 %>  x   <%= @mult2 %>  <%= number_field_tag :mult, class: 'form-control' %>
       <%= hidden_field_tag :multiplication, @mult1 * @mult2 %><br /><br />
 

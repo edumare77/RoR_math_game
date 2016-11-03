@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :arithmetics, dependent: :destroy
   VALID_LEV = %w(Beginner Intermediary Proficiency)
   VALID_CAT = %w(Student Teacher)
   
