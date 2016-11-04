@@ -3,7 +3,7 @@ class ArithmeticsController < ApplicationController
     
   def new
     user = User.find_by(user_name: current_user.user_name)
-    @arithmetic = current_user.arithmetics.new
+    @arithmetic = current_user.arithmetic.new
     render 'new'
   end
   
@@ -22,46 +22,53 @@ class ArithmeticsController < ApplicationController
     
     def create
       
-      sub = params[:sub]
-      add = params[:add]
-      mult = params[:mult]
-      sub_res = params[:subtraction]
-      add_res = params[:addition]
-      mult_res = params[:multiplication]
-      p "the total is #{mult_res}"
-      @arithmetic = current_user.arithmetics.build
       
-      user_sub=  @arithmetic.subtraction
-      user_add=  @arithmetic.addition
-      user_mult= @arithmetic.multiplication
-        
-      if sub == sub_res
-        user_sub += 1
-      end 
+               sub = params[:sub]
+               add = params[:add]
+               mult = params[:mult]
+               sub_res = params[:subtraction]
+               add_res = params[:addition]
+               mult_res = params[:multiplication]
+               p "the total is #{mult}"
+              # user = User.find_by(user_name: current_user.user_name)
+              @arithmetic = current_user.arithmetic.create
+              result=@arithmetic.result
+              p "resulr id is #{@arithmetic.result}"
+               user_sub=  result.subtraction
+              p "subtraction is #{sub_res}"
+               user_add=  result.addition
+               user_mult= result.multiplication
+                 
+               if sub == sub_res
+                 user_sub += 1
+               end 
+               
+               if add == add_res
+                 user_add += 1
+               end 
+               
+               if mult == mult_res
+                 user_mult += 1
+                 p "multiplication is #{user_mult}"
+               end 
+               
+               
+              result.update_attributes(:subtraction => user_sub, :addition => user_add, :multiplication => user_mult)
+                     @arithmetic.save!
+                     result.save!
+                     if @arithmetic.save
+                       p "user_id is #{@arithmetic.user_id}"
+                      
+                      
+                    
+                     flash[:success] = "Well done, let's play again!"
+                     redirect_to new_arithmetic_path
+                     else
+                         # print the errors to the development log
+                         Rails.logger.info(user.errors.messages.inspect)
+                       redirect_to new_arithmetic_path
+                       end
       
-      if add == add_res
-        user_add += 1
-      end 
-      
-      if mult == mult_res
-        user_mult += 1
-      end 
-      
-      
-      @arithmetic.update_attributes(:subtraction => user_sub, :addition => user_add, :multiplication => user_mult)
-            @arithmetic.save!
-            if @arithmetic.save
-              p "user_id is #{@arithmetic.user_id}"
-              p "subtraction gordo is #{Arithmetic.where(user_id: @arithmetic.user_id).select(:subtraction)}"
-              p "subtraction is #{Arithmetic.sum(:subtraction)}"
-           p "subtraction is #{Arithmetic}"
-            flash[:success] = "Well done, let's play again!"
-            redirect_to new_arithmetic_path
-            else
-                # print the errors to the development log
-                Rails.logger.info(user.errors.messages.inspect)
-                render 'new'
-              end
       
     end
     

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subtraction: 1
+  addition: 1
+  multiplication: 1
+  user: one
+  arithmetic: one
+
+two:
+  subtraction: 1
+  addition: 1
+  multiplication: 1
+  user: two
+  arithmetic: two

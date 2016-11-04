@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'results/new'
+
   root 'welcome#home'
   get '/about',   to: 'welcome#about'
   get  '/signup',  to: 'users#new'
@@ -10,4 +12,5 @@ Rails.application.routes.draw do
   #post   '/game',   to: 'arithmetics#create'
   resources :users
   resources :arithmetics
+  resources :results
 end

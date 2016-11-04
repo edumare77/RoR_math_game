@@ -1,19 +1,10 @@
 class Arithmetic < ApplicationRecord
+  after_create do
+          Result.create arithmetic: self
+        end
   belongs_to :user
+  has_one :result, dependent: :destroy
   default_scope  { order(created_at: :desc) }
   
-  after_initialize :set_defaults
-       # The set_defaults will only work if the object is new
   
-  validates :user_id, presence: true
-  validates :subtraction, presence: true
-  validates :addition, presence: true
-  validates :multiplication, presence: true
-  
-  
-  def set_defaults
-        self.subtraction  ||= 0
-        self.addition  ||= 0
-        self.multiplication  ||= 0
-      end
 end
