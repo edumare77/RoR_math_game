@@ -1,5 +1,5 @@
 class ArithmeticsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  
     
   def new
     user = User.find_by(user_name: current_user.user_name)
@@ -33,13 +33,10 @@ class ArithmeticsController < ApplicationController
                sub_res = params[:subtraction]
                add_res = params[:addition]
                mult_res = params[:multiplication]
-               p "the total is #{mult}"
-              # user = User.find_by(user_name: current_user.user_name)
-              @arithmetic = current_user.arithmetic.create
-              result=@arithmetic.result
-             
+               @arithmetic = current_user.arithmetic.create
+               result=@arithmetic.result
+              
                user_sub=  result.subtraction
-              p "subtraction is #{sub_res}"
                user_add=  result.addition
                user_mult= result.multiplication
                  
@@ -53,24 +50,17 @@ class ArithmeticsController < ApplicationController
                
                if mult == mult_res
                  user_mult += 1
-                 p "multiplication is #{user_mult}"
-               end 
+                  end 
                
                
               result.update_attributes(:subtraction => user_sub, :addition => user_add, :multiplication => user_mult)
-                     @arithmetic.save!
-                     result.save!
-                    p "puntos sub #{Result.joins(:arithmetic).where(arithmetics: { user_id: current_user.id }).pluck(:'multiplication').sum}"
-                     if @arithmetic.save
-                    
-                    
-                     flash[:success] = "Well done, let's play again!"
-                     redirect_to new_arithmetic_path
-                     else
-                         # print the errors to the development log
-                         Rails.logger.info(user.errors.messages.inspect)
-                       redirect_to new_arithmetic_path
-                       end
+               
+               
+               if @arithmetic.save
+                 redirect_to new_arithmetic_path
+               else
+                  redirect_to new_arithmetic_path
+               end
       
       
     end

@@ -15,7 +15,6 @@ class User < ApplicationRecord
                        uniqueness: true 
   validates :categorie, presence: true  
   validates_inclusion_of :categorie, :in => VALID_CAT                  
-  validates :score, presence: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 },
                        confirmation: true, on: :create
@@ -32,7 +31,6 @@ class User < ApplicationRecord
   
     def set_defaults
       self.level  ||= 'Beginner'
-      self.score  ||= 0
       self.categorie  ||= 'Student'
     end
   

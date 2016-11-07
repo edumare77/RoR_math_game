@@ -2,6 +2,8 @@
   <nav>
     <ul>
       <li><%= link_to "About",   about_path %></li>
+      <li><%= link_to "delete", current_user, method: :delete,
+                                  data: { confirm: "You sure?" } %></li>
       </ul>
   </nav>
 </footer>

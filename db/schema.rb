@@ -20,13 +20,12 @@ ActiveRecord::Schema.define(version: 20161103111340) do
   end
 
   create_table "results", force: :cascade do |t|
+    t.integer  "arithmetic_id"
     t.integer  "subtraction"
     t.integer  "addition"
     t.integer  "multiplication"
-    t.integer  "arithmetic_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["arithmetic_id"], name: "index_results_on_arithmetic_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 20161103111340) do
     t.string   "name",            null: false
     t.string   "surname",         null: false
     t.string   "level"
-    t.integer  "score"
     t.string   "password_digest", null: false
     t.string   "categorie"
     t.datetime "created_at",      null: false
