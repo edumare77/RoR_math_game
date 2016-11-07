@@ -55,7 +55,7 @@ class ArithmeticsController < ApplicationController
                
               result.update_attributes(:subtraction => user_sub, :addition => user_add, :multiplication => user_mult)
                
-               
+               p "esto sale"
                if @arithmetic.save
                  redirect_to new_arithmetic_path
                else
