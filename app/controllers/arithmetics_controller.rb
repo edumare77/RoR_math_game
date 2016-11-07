@@ -2,13 +2,15 @@ class ArithmeticsController < ApplicationController
   
     
   def new
+    
     user = User.find_by(user_name: current_user.user_name)
     @arithmetic = current_user.arithmetic.new
     @result_sub = Result.joins(:arithmetic).where(arithmetics: { user_id: current_user.id }).pluck(:'subtraction').sum
     @result_add = Result.joins(:arithmetic).where(arithmetics: { user_id: current_user.id }).pluck(:'addition').sum  
     @result_mult = Result.joins(:arithmetic).where(arithmetics: { user_id: current_user.id }).pluck(:'multiplication').sum
     @total_score = @result_sub +  @result_add + @result_mult
-    render 'new'
+    render :layout => 'application'
+   # render 'new'
   end
   
   
