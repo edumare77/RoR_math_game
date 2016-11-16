@@ -57,6 +57,7 @@ class ArithmeticsController < ApplicationController
                
                p "esto sale"
                if @arithmetic.save
+                 flash[:success] = "Well done #{current_user.user_name}, try again!"
                  redirect_to new_arithmetic_path
                else
                   redirect_to new_arithmetic_path
